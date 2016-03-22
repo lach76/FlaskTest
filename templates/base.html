@@ -67,8 +67,8 @@
                e.preventDefault() 
                $('.topmenu').parents('li').removeClass('active')
                $(this).parents('li').addClass('active')
-               alert("/" + $('li.active').find('a').text())
-               $("#leftmenu").load("/" + $('li.active').find('a').text())
+               alert("/" + $('li.active').find('a').attr("id"))
+               $("#leftmenu").load("/" + $('li.active').find('a').attr("id"))
             });
 
             $($('.topmenu')[0]).click()
@@ -94,10 +94,10 @@
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="#" class="topmenu">Licenses</a></li>
-                <li><a href="#" class="topmenu">Scheduler</a></li>
-                <li><a href="#" class="topmenu">Projects</a></li>
-                <li><a href="#" class="topmenu">Contact</a></li>
+                <li class="active"><a href="#" class="topmenu" id="LicenseList">Licenses</a></li>
+                <li><a href="#" class="topmenu" id="Scheduler">Scheduler</a></li>
+                <li><a href="#" class="topmenu" id="Projects">Projects</a></li>
+                <li><a href="#" class="topmenu" id="Contact">Contact</a></li>
             </ul>
         </div>
     </div>
