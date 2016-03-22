@@ -83,8 +83,9 @@
                 }
                 $table.append($thead).append($tbody).appendTo($users);
             });
-            $('.menu').click(function() {
-                socket.emit('users');
+            $('.menu').click(function(e) {
+                e.preventDefault();
+                $("#users").load("/users");
             });
         });
     </script>
