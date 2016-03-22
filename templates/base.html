@@ -65,7 +65,7 @@
         $(function () {
             var socket = io.connect('http://' + document.domain + ':' + location.port);
             socket.on('connect', function () {
-                socket.emit('users');
+                console.log('Connected');
             });
             socket.on('users', function (result) {
                 var $table, $thead, $tbody, $users, users, user;
@@ -82,6 +82,9 @@
                     $tbody.append($('<tr>').append($('<td>').text(user.id)).append($('<td>').text(user.name)));
                 }
                 $table.append($thead).append($tbody).appendTo($users);
+            });
+            $('.menu').click(function() {
+                socket.emit('users');
             });
         });
     </script>
