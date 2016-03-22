@@ -63,26 +63,16 @@
     </style>
     <script>
         $(function () {
-            var socket = io.connect('http://' + document.domain + ':' + location.port);
-            socket.on('connect', function () {
-                console.log('Connected');
+            $('.topmenu').click(function(e) {
+               e.preventDefault() 
+               $('.topmenu').parents('li').removeClass('active')
+               $(this).parents('li').addClass('active')
+               alert("/" + $('li.active').find('a').text())
+               $("#leftmenu").load("/" + $('li.active').find('a').text())
             });
-            socket.on('users', function (result) {
-                var $table, $thead, $tbody, $users, users, user;
-                users = JSON.parse(result);
-                $users = $('#users');
-                $table = $('<table>', {
-                    'class': 'table table-striped'
-                });
-                $thead = $('<thead>');
-                $tbody = $('<tbody>');
-                $thead.append($('<tr>').append($('<th>').text('ID')).append($('<th>').text('NAME')));
-                for (var i = 0; i < users.length; i++) {
-                    user = users[i];
-                    $tbody.append($('<tr>').append($('<td>').text(user.id)).append($('<td>').text(user.name)));
-                }
-                $table.append($thead).append($tbody).appendTo($users);
-            });
+
+            $($('.topmenu')[0]).click()
+            
             $('.menu').click(function(e) {
                 e.preventDefault();
                 $("#users").load("/users");
@@ -104,10 +94,10 @@
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="/licenses">Licenses</a></li>
-                <li><a href="/scheduler">Scheduler</a></li>
-                <li><a href="/projects">Projects</a></li>
-                <li><a href="/contact">Contact</a></li>
+                <li class="active"><a href="#" class="topmenu">Licenses</a></li>
+                <li><a href="#" class="topmenu">Scheduler</a></li>
+                <li><a href="#" class="topmenu">Projects</a></li>
+                <li><a href="#" class="topmenu">Contact</a></li>
             </ul>
         </div>
     </div>
@@ -115,7 +105,7 @@
 
 <div class="container-fluid text-center">
     <div class="row content">
-        <div class="col-sm-2 sidenav">
+        <div class="col-sm-3 sidenav">
             {% include 'left_menu.html' %}
         </div>
         <div class="col-sm-8 text-left">
